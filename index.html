@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kimwonho_poetry_blue</title>
+<meta name="description" content="김원호 — 시인 지망생. 시와 산문, 연구를 모아 두는 곳.">
+<meta property="og:title" content="kimwonho_poetry_blue">
+<meta property="og:description" content="김원호 — 시인 지망생. 시와 산문, 연구를 모아 두는 곳.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#002fa8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='11' width='12' height='3' fill='%23002fa8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfbf6;
+  --ink:#141419;
+  --sub:#73737a;
+  --line:#e6e6df;
+  --blue:#002fa8;      /* 이 사이트의 청색. 여기서 바꾸면 전체가 바뀝니다. */
+  --blue2:#1a49d6;
+  --serif:'Noto Serif KR','Apple SD Gothic Neo',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Pretendard','Malgun Gothic',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.8;
+  min-height:100vh;display:flex;flex-direction:column;
+}
+/* 배경: 청색 잉크가 번진 듯한 옅은 물결 두엇 */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1100px 700px at 8% -12%, rgba(0,47,168,.085), transparent 62%),
+    radial-gradient(900px 620px at 108% 112%, rgba(0,47,168,.065), transparent 60%),
+    radial-gradient(520px 380px at 88% -6%, rgba(26,73,214,.04), transparent 65%);
+}
+/* 배경: 종이의 결 (아주 옅은 그레인) */
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--blue);color:#fff}
+.mono{font-family:var(--mono)}
+
+/* ── 머리 ─────────────────────────────── */
+header{
+  width:100%;max-width:920px;margin:0 auto;
+  padding:36px 24px 18px;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;
+}
+.mark{font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+.mark span{color:var(--blue)}
+nav.top{display:flex;gap:20px;font-size:13px;color:var(--sub)}
+nav.top a:hover{color:var(--ink)}
+nav.top a.on{color:var(--blue)}
+
+main{width:100%;max-width:920px;margin:0 auto;flex:1;padding:46px 24px 90px;animation:in .28s ease}
+@keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+footer{width:100%;max-width:920px;margin:0 auto;padding:0 24px 56px;
+  font-family:var(--mono);font-size:11px;color:var(--sub)}
+
+/* ── 공통 조각 ─────────────────────────── */
+.k{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.page-note{color:var(--sub);font-size:13.5px;max-width:560px;margin-bottom:30px}
+h1.page{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:26px}
+
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:96px 1fr auto;gap:4px 18px;align-items:baseline;
+  padding:15px 2px;border-bottom:1px solid var(--line)}
+.row .d{font-family:var(--mono);font-size:12px;color:var(--sub)}
+.row .t{font-family:var(--serif);font-size:16.5px;line-height:1.7}
+.row .g{font-family:var(--mono);font-size:11px;color:var(--sub);letter-spacing:.06em}
+.row:hover .t{color:var(--blue)}
+
+/* ── 첫 화면(프로필) ───────────────────── */
+.profile{text-align:center;padding-top:30px}
+.pf-photo{width:230px;height:230px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 78px;background:#ecece5}
+.pf-names{margin-bottom:66px}
+.pf-name{font-family:var(--serif);font-weight:400;font-size:19px;letter-spacing:.04em;margin-bottom:26px}
+.pf-name.latin{font-family:var(--mono);font-size:14.5px;letter-spacing:.1em}
+.pf-roles{margin-bottom:98px}
+.pf-role{font-family:var(--serif);font-size:14.5px;line-height:2.4}
+.pf-mail a{font-family:var(--serif);font-size:15px;letter-spacing:.02em}
+.pf-mail a:hover{color:var(--blue)}
+.pf-links{display:flex;justify-content:center;gap:26px;margin-top:46px}
+.pf-links a{color:var(--ink);display:inline-flex}
+.pf-links a:hover{color:var(--blue)}
+.pf-links svg{width:19px;height:19px}
+
+/* ── 본문 읽기 ─────────────────────────── */
+.reader{max-width:640px;margin:0 auto}
+.crumb{margin-bottom:36px;font-size:11.5px;letter-spacing:.1em}
+.crumb a{color:var(--blue)}
+.w-title{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.6;margin-bottom:10px}
+.w-meta{font-family:var(--mono);font-size:12px;color:var(--sub);margin-bottom:50px}
+.w-body{font-family:var(--serif)}
+.w-body.poem{white-space:pre-wrap;font-size:17px;line-height:2.2;font-weight:400}
+.w-body.prose p{font-size:16px;line-height:2.05;margin-bottom:1.6em}
+.wlink{display:inline-block;margin-top:26px;font-family:var(--mono);font-size:12.5px;
+  color:var(--blue);border-bottom:1px solid var(--blue)}
+.w-note{margin-top:46px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--sub)}
+.pn{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  margin-top:70px;font-size:13px;color:var(--sub)}
+.pn span{max-width:42%;line-height:1.7}
+.pn a:hover{color:var(--blue)}
+.pn .mid{font-family:var(--mono);font-size:12px}
+
+/* ── 소개 ─────────────────────────────── */
+.facts{border-top:1px solid var(--line);margin-top:6px}
+.fact{display:grid;grid-template-columns:72px 1fr;gap:16px;padding:13px 2px;border-bottom:1px solid var(--line)}
+.fact .fk{font-family:var(--mono);font-size:12px;color:var(--sub);padding-top:4px}
+.fact .fv{font-family:var(--serif);font-size:15px;line-height:1.95}
+.fact .fv a:hover{color:var(--blue)}
+.grp{margin-top:48px}
+.grp-list{border-top:1px solid var(--line)}
+.grp-it{padding:11px 2px;border-bottom:1px solid var(--line);
+  font-family:var(--serif);font-size:14.5px;line-height:1.9}
+.grp-it.lk{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.grp-it.lk:hover span:first-child{color:var(--blue)}
+.grp-it .arr{font-family:var(--mono);font-size:11px;color:var(--sub);flex:none}
+.grp-it.lk:hover .arr{color:var(--blue)}
+a.blue{color:var(--blue)}
+a.blue:hover{color:var(--blue2)}
+
+/* ── 방문록 ────────────────────────────── */
+.gb-list{margin:6px 0 54px;border-top:1px solid var(--line)}
+.gb{padding:20px 2px;border-bottom:1px solid var(--line)}
+.gb .who{font-family:var(--mono);font-size:12px;color:var(--sub);margin-bottom:8px}
+.gb .msg{font-family:var(--serif);font-size:15px;line-height:2;white-space:pre-wrap}
+form.gbf{max-width:640px;display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.gbf input,.gbf textarea{
+  font-family:var(--sans);font-size:14px;line-height:1.8;color:var(--ink);
+  width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:0;
+  background:#fff;outline:none;
+}
+.gbf input:focus,.gbf textarea:focus{border-color:var(--blue)}
+.gbf textarea{min-height:150px;resize:vertical}
+.gbf button{
+  align-self:flex-start;cursor:pointer;
+  font-family:var(--mono);font-size:13px;padding:10px 24px;
+  border:1px solid var(--ink);background:var(--ink);color:#fff;
+}
+.gbf button:hover{background:var(--blue);border-color:var(--blue)}
+#gb-status{font-size:13px;color:var(--blue);min-height:1.6em}
+.hint{font-size:12.5px;color:var(--sub);margin-top:12px;max-width:560px}
+
+/* ── 좁은 화면 ─────────────────────────── */
+@media(max-width:620px){
+  header{padding:28px 20px 16px}
+  .mark{font-size:13.5px}
+  nav.top{width:100%;gap:16px;font-size:12.5px}
+  main{padding:34px 20px 70px}
+  .row{grid-template-columns:1fr auto}
+  .row .d{grid-column:1}
+  .row .g{grid-column:2;justify-self:end}
+  .row .t{grid-column:1 / -1;font-size:16px}
+  .pf-photo{width:190px;height:190px;margin-bottom:60px}
+  .pf-names{margin-bottom:54px}
+  .pf-roles{margin-bottom:76px}
+  .w-title{font-size:21px}
+  footer{padding:0 20px 44px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="mark" href="#/">kimwonho<span>_</span>poetry<span>_</span>blue</a>
+  <nav class="top" aria-label="주요 메뉴">
+    <a href="#/poem" data-n="poem">시</a>
+    <a href="#/prose" data-n="prose">산문</a>
+    <a href="#/research" data-n="research">연구</a>
+    <a href="#/about" data-n="about">소개</a>
+    <a href="#/guest" data-n="guest">방문록</a>
+  </nav>
+</header>
+
+<main id="app"><noscript><p>이 페이지를 보려면 자바스크립트를 켜 주세요.</p></noscript></main>
+
+<footer><span>© 2026 김원호 · kimwonho_poetry_blue</span></footer>
+
+<script>
+/* =========================================================
+   ✎ 여기서부터가 '내용'입니다.
+   ---------------------------------------------------------
+   · 글과 소개는 별채 '편집실' 파일에서 고치는 것이 가장 쉽습니다.
+     (편집실을 열고 이 index.html을 불러오면, 고친 뒤 새 파일을
+      만들어 줍니다. 그 파일로 바꿔서 호스팅에 올리면 반영됩니다.)
+   · 손으로 고칠 때: 아래 '새 글 틀'을 복사해서 WORKS 대괄호
+     안 맨 위에 붙여 넣습니다. 위에 둘수록 최신.
+   · section 값  : "poem"(시) "prose"(산문·비평) "research"(연구)
+   · 본문(body)  : 백틱(`) 두 개 사이에 씁니다. 행갈이와 빈 줄이
+     화면에 그대로 반영됩니다. 본문 안에는 백틱 기호만 쓰지 마세요.
+   · 아래 "WORKS 끝" "ABOUT 끝" 표식은 편집실이 길을 찾는
+     이정표이니 지우지 마세요.
+   ========================================================= */
+
+const SITE = {
+  title: "kimwonho_poetry_blue",
+  author: "김원호",
+  email: "ssonss81@naver.com",
+  guestbookEndpoint: ""  /* 방문록 전송 주소(안내문 참고). 비워 두면 메일로 작동합니다. */
+};
+
+/* ── 첫 화면 ── */
+const PROFILE = {
+  photo: "profile.jpg",   /* 같은 폴더의 사진 파일 이름. 파일을 바꾸면 사진이 바뀝니다. */
+  names: ["김원호", "金元晧", "Kim wonho"],
+  roles: ["시인 지망생"],
+  email: "ssonss81@naver.com",
+  links: [
+    { label: "instagram", url: "https://www.instagram.com/ki_mo_no_/", icon: "instagram" },
+    { label: "blog", url: "https://blog.naver.com/ssonss81", icon: "blog" }
+  ]
+};
+
+/* ── 새 글 틀 (복사해서 쓰세요) ───────────────────────────
+{
+  id: "p-100",            // 글마다 다른 이름. 겹치면 안 됩니다.
+  section: "poem",        // poem | prose | research
+  title: "제목",
+  date: "2026-07-08",     // 연-월-일
+  meta: "",               // 발표 지면 등. 없으면 빈 따옴표.
+  link: "",               // 원문 주소(연구 글용). 없으면 빈 따옴표.
+  note: "",               // 본문 끝에 작게 붙는 말. 없으면 빈 따옴표.
+  body: `첫 행
+둘째 행
+
+빈 줄은 연 나눔이 됩니다`
+},
+──────────────────────────────────────────────────────── */
+
+const WORKS = [
+
+{
+  id: "p-001",
+  section: "poem",
+  title: "유리의 안쪽",
+  date: "2026-07-01",
+  meta: "",
+  link: "",
+  note: "예시 작품입니다. 본인의 시로 바꿔 주세요.",
+  body: `빛은 유리를 통과하면서
+조금 늦게 도착한다
+
+늦게 온 빛이 책상 위에
+네모난 오후를 내려놓는다
+
+나는 그 안에 손을 넣어 본다
+따뜻한 것은 빛인가 시간인가
+
+창밖에서 새 한 마리
+제 그림자를 끌고 지나간다
+
+유리의 안쪽에서 나는
+바깥을 오래 읽는 사람
+
+읽다가 만 페이지처럼
+커튼이 접힌다`
+},
+
+{
+  id: "e-001",
+  section: "prose",
+  title: "이미지의 호흡에 관하여",
+  date: "2026-06-20",
+  meta: "",
+  link: "",
+  note: "예시 글입니다. 본인의 산문이나 비평으로 바꿔 주세요.",
+  body: `시에서 이미지는 정지된 그림이 아니라 호흡의 단위다. 한 행이 끝나는 자리에서 이미지는 잠시 숨을 참고, 행이 바뀌는 순간 다음 장면으로 몸을 옮긴다. 그러므로 행갈이를 다듬는 일은 화면을 편집하는 일이라기보다 숨의 길이를 재는 일에 가깝다.
+
+우리는 시를 눈으로 읽는다고 믿지만, 좋은 시는 먼저 호흡으로 읽힌다. 이미지가 배치되는 자리와 숨이 놓이는 자리가 겹칠 때, 장면은 비로소 움직이기 시작한다.`
+},
+
+{
+  id: "r-001",
+  section: "research",
+  title: "시선의 위상학 — 1930년대 모더니즘 시의 시각성 연구",
+  date: "2026-06-05",
+  meta: "학술대회 발제문 · 2026",
+  link: "",
+  note: "초록 예시입니다. 실제 연구의 초록으로 바꿔 주세요.",
+  body: `이 연구는 1930년대 모더니즘 시에 나타난 시선의 구조를 위상학적 관점에서 다시 읽는다. 보는 주체와 보이는 대상 사이의 거리 감각이 시적 공간을 어떻게 조직하는지, 근대 도시의 시각 체제가 시의 형식에 남긴 흔적은 무엇인지 검토한다.`
+},
+
+{
+  id: "p-002",
+  section: "poem",
+  title: "수요일의 강",
+  date: "2026-05-18",
+  meta: "",
+  link: "",
+  note: "예시 작품입니다. 본인의 시로 바꿔 주세요.",
+  body: `수요일에는 강에 간다
+지난주의 물은 벌써 하류에서 어두워지고
+
+오늘의 물이 오늘의 자리를
+말없이 데우고 있다
+
+다리 위에서 보면
+흐르는 것은 물이 아니라 다리 같다
+
+나는 흘러가는 쪽에 서서
+남아 있는 것들의 이름을 부른다`
+},
+
+{
+  id: "r-002",
+  section: "research",
+  title: "정동과 장소 — 현대시의 공간 감각에 관한 시론",
+  date: "2025-11-02",
+  meta: "발제문 · 2025",
+  link: "",
+  note: "초록 예시입니다. 실제 연구의 초록으로 바꿔 주세요.",
+  body: `장소는 배경이 아니라 정동이 발생하는 조건이다. 이 글은 현대시가 공간을 감각화하는 몇 가지 방식을 살피고, 장소 경험의 재편이 시적 주체의 구성에 개입하는 양상을 검토한다.`
+}
+
+]; /* WORKS 끝 */
+
+/* ── 소개 ── */
+const ABOUT = {
+  facts: [
+    { k: "이름", v: "김원호" },
+    { k: "소개", v: "1997년 경상남도 창원에서 태어나 진주에서 자랐다" },
+    { k: "발단", v: "2020년 12월 7일 처음 글을 쓰고 읽기 시작했다" },
+    { k: "근황", v: "동국대학교 국어국문학과(현대문학 전공) 석사 과정에 재학 중이다" },
+    { k: "활동", v: "시 | 희곡 | 에세이 를 썼다" },
+    { k: "메일", v: "ssonss81@naver.com" }
+  ],
+  groups: [
+    { h: "발표 지면", items: [
+      { t: "《다층》 2025 봄", url: "https://kimwonho.tistory.com/1" },
+      { t: "《시와 산문》 2025 봄", url: "https://kimwonho.tistory.com/2" },
+      { t: "《현대시학》 2025 1-2월", url: "https://kimwonho.tistory.com/5" },
+      { t: "《모닥》", url: "https://kimwonho.tistory.com/3" },
+      { t: "《살림문학》", url: "https://kimwonho.tistory.com/4" },
+      { t: "《자음과모음》 2024 겨울", url: "https://kimwonho.tistory.com/7" },
+      { t: "《P.S 시와 징후》 2023 겨울", url: "https://kimwonho.tistory.com/10" },
+      { t: "《황해문화》 2023 겨울", url: "https://kimwonho.tistory.com/12" },
+      { t: "《파란》 2023 가을", url: "https://kimwonho.tistory.com/13" },
+      { t: "《시산맥》 2023 여름", url: "https://kimwonho.tistory.com/15" },
+      { t: "《공정한시인의사회》 2023 4월", url: "https://kimwonho.tistory.com/16" },
+      { t: "《가글》 2호", url: "https://kimwonho.tistory.com/18" },
+      { t: "《무트로》 VOL.3", url: "https://kimwonho.tistory.com/19" },
+      { t: "《주머니시》 5th", url: "https://kimwonho.tistory.com/20" },
+      { t: "《같이 가는 기분》 2022 봄", url: "https://kimwonho.tistory.com/24" },
+      { t: "《웹진 포엣푸념》 푸념 인터뷰", url: "https://kimwonho.tistory.com/34" }
+    ] },
+    { h: "문학상", items: [
+      { t: "《동대문학상》", url: "https://kimwonho.tistory.com/37" },
+      { t: "《윤동주시문학상》 제24회", url: "https://kimwonho.tistory.com/6" },
+      { t: "《가람이병기청년시문학상》", url: "https://kimwonho.tistory.com/8" },
+      { t: "《펄벅기념문학상》", url: "https://kimwonho.tistory.com/9" },
+      { t: "《의혈창작문학상》", url: "https://kimwonho.tistory.com/11" },
+      { t: "《기아 인스파이어링 문학상》", url: "https://kimwonho.tistory.com/14" },
+      { t: "《계명문학상》", url: "https://kimwonho.tistory.com/25" },
+      { t: "《경남청년문학상》", url: "https://kimwonho.tistory.com/21" },
+      { t: "《전주동네책방문학상》", url: "https://kimwonho.tistory.com/22" },
+      { t: "《의정부전국문학공모전》", url: "https://kimwonho.tistory.com/26" }
+    ] },
+    { h: "입주·증명·프로젝트", items: [
+      { t: "《연희문학창작촌 입주작가》 2026년 3분기(7~9월) 선정", url: "https://kimwonho.tistory.com/38" },
+      { t: "《토지문화재단 문인 창작실 입주작가》", url: "https://kimwonho.tistory.com/28" },
+      { t: "《완산도서관 자작사색(전문작가 집필실) 입주작가》", url: "https://kimwonho.tistory.com/32" },
+      { t: "《한국예술인복지재단 예술인 예술활동증명》", url: "https://kimwonho.tistory.com/35" },
+      { t: "《한국예술인복지재단 신진예술인 예술활동증명》", url: "https://kimwonho.tistory.com/30" },
+      { t: "《경남문화예술진흥원 지역문화예술육성지원사업 공모: 문학_개인(생애최초)》", url: "https://kimwonho.tistory.com/33" },
+      { t: "《한국문화예술위원회 후원 전국 예비 극작가 인큐베이팅 프로젝트-희곡 읽기 좋은 날》", url: "https://kimwonho.tistory.com/29" }
+    ] }
+  ]
+}; /* ABOUT 끝 */
+
+/* ── 방문록에 옮겨 적은 말들 ──
+   메일로 도착한 말 가운데 올리고 싶은 것을 아래에 추가하세요. 맨 위가 최신. */
+const GUESTBOOK = [
+  { name: "첫 손님", date: "2026-07-08", text: "(예시) 남겨 주신 말은 이런 모습으로 벽에 옮겨 적힙니다." }
+];
+
+/* =========================================================
+   여기서부터는 화면을 만드는 부분입니다. 고치지 않아도 됩니다.
+   ========================================================= */
+
+const SEC = {
+  poem:     { label: "시",        short: "시" },
+  prose:    { label: "산문·비평", short: "산문" },
+  research: { label: "연구",      short: "연구" }
+};
+
+const ICONS = {
+  instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"/></svg>',
+  blog: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 5h15A1.5 1.5 0 0 1 21 6.5v9a1.5 1.5 0 0 1-1.5 1.5h-5.2L12 20l-2.3-3H4.5A1.5 1.5 0 0 1 3 15.5v-9A1.5 1.5 0 0 1 4.5 5Z"/><text x="12" y="13.8" text-anchor="middle" font-size="8.5" font-weight="700" font-family="Arial, sans-serif" fill="currentColor" stroke="none">b</text></svg>'
+};
+
+const esc = s => String(s).replace(/[&<>"']/g, c => (
+  { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+));
+
+function fmtDate(s){
+  if(!s) return "";
+  const p = String(s).split("-").map(Number);
+  return p.length >= 3 ? `${p[0]}. ${p[1]}. ${p[2]}.` : `${p[0]}. ${p[1] || ""}.`;
+}
+
+function renderRows(list){
+  return list.map(w =>
+    `<a class="row" href="#/w/${esc(w.id)}">
+       <span class="d">${fmtDate(w.date)}</span>
+       <span class="t">${esc(w.title)}</span>
+       <span class="g">${SEC[w.section].short}</span>
+     </a>`).join("");
+}
+
+function renderHome(){
+  const names = PROFILE.names.map(n =>
+    `<p class="pf-name${/^[A-Za-z .·-]+$/.test(n) ? " latin" : ""}">${esc(n)}</p>`).join("");
+  const roles = PROFILE.roles.map(r => `<p class="pf-role">${esc(r)}</p>`).join("");
+  const links = PROFILE.links.map(l =>
+    `<a href="${esc(l.url)}" target="_blank" rel="noopener" aria-label="${esc(l.label)}">${ICONS[l.icon] || esc(l.label)}</a>`).join("");
+  return `<div class="profile">
+    <img class="pf-photo" src="${esc(PROFILE.photo)}" alt="${esc(SITE.author)}의 사진" onerror="this.style.visibility='hidden'">
+    <div class="pf-names">${names}</div>
+    <div class="pf-roles">${roles}</div>
+    <p class="pf-mail"><a href="mailto:${esc(PROFILE.email)}">${esc(PROFILE.email)}</a></p>
+    <div class="pf-links">${links}</div>
+  </div>`;
+}
+
+function renderList(s){
+  const list = WORKS.filter(w => w.section === s);
+  const body = list.length
+    ? `<div class="rows">${renderRows(list)}</div>`
+    : `<p class="page-note">아직 올린 글이 없습니다.</p>`;
+  return `<h1 class="page">${SEC[s].label}</h1>${body}`;
+}
+
+function bodyHtml(w){
+  if(w.section === "poem")
+    return `<div class="w-body poem">${esc(w.body)}</div>`;
+  const ps = w.body.split(/\n{2,}/)
+    .map(p => `<p>${esc(p).replace(/\n/g, "<br>")}</p>`).join("");
+  return `<div class="w-body prose">${ps}</div>`;
+}
+
+function renderWork(w){
+  const list = WORKS.filter(x => x.section === w.section);
+  const i = list.findIndex(x => x.id === w.id);
+  const prev = list[i + 1], next = list[i - 1];
+  return `<div class="reader">
+    <p class="crumb mono"><a href="#/${w.section}">${SEC[w.section].label}</a></p>
+    <h1 class="w-title">${esc(w.title)}</h1>
+    <p class="w-meta">${fmtDate(w.date)}${w.meta ? " · " + esc(w.meta) : ""}</p>
+    ${bodyHtml(w)}
+    ${w.link ? `<a class="wlink" href="${esc(w.link)}" target="_blank" rel="noopener">원문 보기 →</a>` : ""}
+    ${w.note ? `<p class="w-note">${esc(w.note)}</p>` : ""}
+    <nav class="pn">
+      <span>${prev ? `<a href="#/w/${esc(prev.id)}">← ${esc(prev.title)}</a>` : ""}</span>
+      <a class="mid" href="#/${w.section}">목록</a>
+      <span style="text-align:right">${next ? `<a href="#/w/${esc(next.id)}">${esc(next.title)} →</a>` : ""}</span>
+    </nav>
+  </div>`;
+}
+
+const normIt = it => typeof it === "string" ? { t: it, url: "" } : it;
+
+function renderAbout(){
+  const facts = ABOUT.facts.map(f => {
+    const v = f.k === "메일"
+      ? `<a href="mailto:${esc(f.v)}">${esc(f.v)}</a>`
+      : esc(f.v);
+    return `<div class="fact"><span class="fk">${esc(f.k)}</span><span class="fv">${v}</span></div>`;
+  }).join("");
+  const groups = ABOUT.groups.map(g =>
+    `<div class="grp">
+       <span class="k">${esc(g.h)}</span>
+       <div class="grp-list">${g.items.map(raw => {
+         const o = normIt(raw);
+         return o.url
+           ? `<a class="grp-it lk" href="${esc(o.url)}" target="_blank" rel="noopener"><span>${esc(o.t)}</span><span class="arr">↗</span></a>`
+           : `<div class="grp-it">${esc(o.t)}</div>`;
+       }).join("")}</div>
+     </div>`).join("");
+  return `<div class="reader">
+    <h1 class="w-title">${esc(SITE.author)}</h1>
+    <div class="facts">${facts}</div>
+    ${groups}
+  </div>`;
+}
+
+function renderGuest(){
+  const items = GUESTBOOK.map(g =>
+    `<div class="gb">
+       <p class="who">${esc(g.name || "익명")} · ${fmtDate(g.date)}</p>
+       <p class="msg">${esc(g.text)}</p>
+     </div>`).join("");
+  const hint = SITE.guestbookEndpoint ? "" :
+    `<p class="hint">보내기를 누르면 메일 창이 열립니다. 도착한 말들을 벽에 옮겨 적는 데에는 하루 이틀이 걸릴 수 있습니다.</p>`;
+  return `<div class="reader">
+    <h1 class="w-title">방문록</h1>
+    <p class="page-note">읽고 가신 자리에 말을 남겨 주세요. 남겨 주신 말은 저에게 전해지고, 그 가운데 몇을 이 벽에 옮겨 적습니다.</p>
+    <div class="gb-list">${items}</div>
+    <span class="k">말 남기기</span>
+    <form class="gbf" id="gbf">
+      <input name="name" aria-label="이름" placeholder="이름 (비워 두어도 됩니다)">
+      <textarea name="message" aria-label="내용" placeholder="여기에 적어 주세요." required></textarea>
+      <button type="submit">보내기</button>
+      <p id="gb-status" aria-live="polite"></p>
+    </form>
+    ${hint}
+  </div>`;
+}
+
+function gbSubmit(e){
+  e.preventDefault();
+  const f = e.target;
+  const name = f.elements["name"].value.trim();
+  const msg  = f.elements["message"].value.trim();
+  const st = document.getElementById("gb-status");
+  if(!msg){ st.textContent = "내용을 적어 주세요."; return; }
+  if(SITE.guestbookEndpoint){
+    st.textContent = "보내는 중…";
+    fetch(SITE.guestbookEndpoint, {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify({ 이름: name || "익명", 내용: msg })
+    }).then(r => {
+      st.textContent = r.ok
+        ? "잘 도착했습니다. 남겨 주셔서 고맙습니다."
+        : "전송하지 못했습니다. 잠시 후 다시 시도해 주세요.";
+      if(r.ok) f.reset();
+    }).catch(() => {
+      st.textContent = "전송하지 못했습니다. 잠시 후 다시 시도해 주세요.";
+    });
+  } else {
+    location.href = "mailto:" + SITE.email
+      + "?subject=" + encodeURIComponent("[방문록] " + (name || "익명"))
+      + "&body=" + encodeURIComponent(msg);
+    st.textContent = "메일 창이 열렸습니다. 그대로 보내 주시면 됩니다.";
+  }
+}
+
+/* ── 길 찾기 ── */
+const app = document.getElementById("app");
+
+function markNav(key){
+  document.querySelectorAll("nav.top a").forEach(a =>
+    a.classList.toggle("on", a.dataset.n === key));
+}
+
+function route(){
+  const seg = location.hash.replace(/^#\/?/, "").split("/");
+  let html, ttl = SITE.title, nav = "";
+  if(seg[0] === "w" && seg[1]){
+    const w = WORKS.find(x => x.id === decodeURIComponent(seg[1]));
+    if(w){ html = renderWork(w); ttl = `${w.title} — ${SITE.title}`; nav = w.section; }
+    else { html = renderHome(); }
+  } else if(SEC[seg[0]]){
+    html = renderList(seg[0]); ttl = `${SEC[seg[0]].label} — ${SITE.title}`; nav = seg[0];
+  } else if(seg[0] === "about"){
+    html = renderAbout(); ttl = `소개 — ${SITE.title}`; nav = "about";
+  } else if(seg[0] === "guest"){
+    html = renderGuest(); ttl = `방문록 — ${SITE.title}`; nav = "guest";
+  } else {
+    html = renderHome();
+  }
+  app.innerHTML = html;
+  document.title = ttl;
+  markNav(nav);
+  window.scrollTo(0, 0);
+  const gf = document.getElementById("gbf");
+  if(gf) gf.addEventListener("submit", gbSubmit);
+}
+
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>편집실 — kimwonho_poetry_blue</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='11' width='12' height='3' fill='%23002fa8'/%3E%3Crect x='2' y='2' width='3' height='7' fill='%23002fa8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfbf6; --ink:#141419; --sub:#73737a; --line:#e6e6df;
+  --blue:#002fa8; --blue2:#1a49d6;
+  --serif:'Noto Serif KR','Apple SD Gothic Neo',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Pretendard','Malgun Gothic',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.8;
+  min-height:100vh;display:flex;flex-direction:column}
+body::before{content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1100px 700px at 8% -12%, rgba(0,47,168,.085), transparent 62%),
+    radial-gradient(900px 620px at 108% 112%, rgba(0,47,168,.065), transparent 60%);}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--blue);color:#fff}
+.mono{font-family:var(--mono)}
+
+header{width:100%;max-width:760px;margin:0 auto;padding:36px 24px 18px;
+  border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.mark{font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:-.01em}
+.mark span{color:var(--blue)}
+.mark em{font-style:normal;color:var(--sub);font-size:13px;margin-left:10px}
+header a.back{font-size:13px;color:var(--sub)}
+header a.back:hover{color:var(--blue)}
+
+main{width:100%;max-width:760px;margin:0 auto;flex:1;padding:42px 24px 90px;animation:in .28s ease}
+@keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+footer{width:100%;max-width:760px;margin:0 auto;padding:0 24px 56px;
+  font-family:var(--mono);font-size:11px;color:var(--sub)}
+
+.k{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.page-note{color:var(--sub);font-size:13.5px;max-width:600px;margin-bottom:26px}
+.w-title{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.6;margin-bottom:10px}
+.w-meta{font-family:var(--mono);font-size:12px;color:var(--sub)}
+.w-body{font-family:var(--serif)}
+.w-body.poem{white-space:pre-wrap;font-size:17px;line-height:2.2}
+.w-body.prose p{font-size:16px;line-height:2.05;margin-bottom:1.6em}
+
+.from{font-family:var(--mono);font-size:12px;color:var(--sub);margin-bottom:26px;
+  display:flex;gap:10px 14px;align-items:center;flex-wrap:wrap}
+.from b{color:var(--blue);font-weight:500}
+
+.drop{margin-top:16px;border:1.5px dashed var(--line);padding:52px 24px;text-align:center;
+  color:var(--sub);font-size:14px;background:rgba(255,255,255,.45)}
+.drop.hover{border-color:var(--blue);color:var(--blue)}
+.drop label{color:var(--blue);cursor:pointer;border-bottom:1px solid var(--blue)}
+.ways{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+
+.tabs{display:flex;gap:8px;margin:4px 0 28px}
+.tab{cursor:pointer;font-family:var(--mono);font-size:12.5px;padding:8px 18px;
+  border:1px solid var(--line);background:transparent;color:var(--sub)}
+.tab.on{border-color:var(--blue);color:var(--blue)}
+
+form.f,.ed,.lk{display:flex;flex-direction:column;gap:12px}
+.f input,.f textarea,.f select,.ed input,.lk input{
+  font-family:var(--sans);font-size:14px;line-height:1.8;color:var(--ink);
+  width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:0;background:#fff;outline:none}
+.f input:focus,.f textarea:focus,.f select:focus,.ed input:focus,.lk input:focus{border-color:var(--blue)}
+.f textarea.body{min-height:320px;resize:vertical;font-family:var(--serif);font-size:15.5px;line-height:2.1}
+.btn{align-self:flex-start;cursor:pointer;font-family:var(--mono);font-size:13px;
+  padding:10px 24px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn:hover{background:var(--blue);border-color:var(--blue)}
+.btn.plain{background:#fff;color:var(--sub);border-color:var(--line)}
+.btn.plain:hover{color:var(--blue);border-color:var(--blue)}
+.mini{cursor:pointer;font-family:var(--mono);font-size:11.5px;padding:4px 12px;
+  border:1px solid var(--line);background:#fff;color:var(--sub)}
+.mini:hover{color:var(--blue);border-color:var(--blue)}
+.mini.danger:hover{color:#a01818;border-color:#a01818}
+.wr-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#wr-status,#ab-status,#load-note,#lk-status{font-size:13px;color:var(--blue);min-height:1.6em}
+.hint{font-size:12.5px;color:var(--sub);max-width:600px}
+
+.man{margin-top:56px}
+.man-row{display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;align-items:baseline;
+  padding:11px 2px;border-bottom:1px solid var(--line)}
+.man-row .g{font-family:var(--mono);font-size:11px;color:var(--sub)}
+.man-row .t{font-family:var(--serif);font-size:15px}
+.man .top-line{border-top:1px solid var(--line)}
+
+.ed-sec{margin-top:30px;display:flex;flex-direction:column;gap:8px}
+.ed-row{display:grid;grid-template-columns:1fr 2.2fr auto;gap:8px}
+.ed-row.head{grid-template-columns:1fr auto}
+.ed-grp{border:1px solid var(--line);padding:16px 14px 12px;background:rgba(255,255,255,.55);
+  display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
+.ed-x{cursor:pointer;font-family:var(--mono);font-size:12px;padding:0 13px;
+  border:1px solid var(--line);background:#fff;color:var(--sub)}
+.ed-x:hover{color:#a01818;border-color:#a01818}
+.ed-add{cursor:pointer;font-family:var(--mono);font-size:12px;padding:8px 14px;
+  border:1px dashed var(--line);background:transparent;color:var(--sub);align-self:flex-start}
+.ed-add:hover{color:var(--blue);border-color:var(--blue)}
+.ed .btn{margin-top:20px}
+
+.lk-box{border:1px solid var(--line);padding:18px 16px;background:rgba(255,255,255,.55);
+  display:flex;flex-direction:column;gap:12px}
+.lk-box .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+.preview{margin-top:60px;border-top:1px solid var(--line);padding-top:26px}
+
+@media(max-width:620px){
+  header{padding:28px 20px 16px}
+  main{padding:32px 20px 70px}
+  .wr-row,.lk-box .row2{grid-template-columns:1fr}
+  .ed-row{grid-template-columns:1fr 1fr auto}
+  footer{padding:0 20px 44px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="mark">kimwonho<span>_</span>poetry<span>_</span>blue<em>편집실</em></span>
+  <a class="back" href="index.html">본채 →</a>
+</header>
+
+<main id="app"></main>
+
+<footer>주인용 별채입니다. 이 파일의 이름이 곧 문패이니, 남에게 알리지 마세요.</footer>
+
+<script>
+/* =========================================================
+   편집실 — 본채(index.html)를 불러와 글과 소개를 고치는 도구.
+   불러오는 길(위에서부터 시도):
+     1) '연결'에 깃허브를 맡겨 두었으면 → 저절로 불러오고,
+        저장하면 사이트에 바로 발행됩니다.
+     2) 호스팅에 함께 올려 두었으면 → 같은 폴더에서 저절로.
+     3) 크롬·엣지에서 폴더를 연결해 두었으면 → 단추 한 번.
+     4) 그도 아니면 → 파일을 끌어다 놓습니다.
+   ========================================================= */
+
+let src = "", W = [], A = null, loaded = false, from = "", tab = "works";
+let gh = null, ghSha = null, dirHandle = null, resumeAvail = false;
+
+const fsOK = typeof window !== "undefined" && "showDirectoryPicker" in window;
+
+const SEC = {
+  poem:     { label: "시",        short: "시" },
+  prose:    { label: "산문·비평", short: "산문" },
+  research: { label: "연구",      short: "연구" }
+};
+
+const esc = s => String(s).replace(/[&<>"']/g, c => (
+  { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+));
+
+function fmtDate(s){
+  if(!s) return "";
+  const p = String(s).split("-").map(Number);
+  return p.length >= 3 ? `${p[0]}. ${p[1]}. ${p[2]}.` : `${p[0]}. ${p[1] || ""}.`;
+}
+
+const normIt = it => typeof it === "string" ? { t: it, url: "" } : it;
+
+function bodyHtml(w){
+  if(w.section === "poem")
+    return `<div class="w-body poem">${esc(w.body)}</div>`;
+  const ps = w.body.split(/\n{2,}/)
+    .map(p => `<p>${esc(p).replace(/\n/g, "<br>")}</p>`).join("");
+  return `<div class="w-body prose">${ps}</div>`;
+}
+
+/* ── 글자 ↔ base64 (UTF-8) ── */
+function b64utf8(s){
+  const bytes = new TextEncoder().encode(s);
+  let bin = "";
+  for(let i = 0; i < bytes.length; i += 0x8000)
+    bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+function ub64(s){
+  const bin = atob(String(s).replace(/\s/g, ""));
+  const bytes = new Uint8Array(bin.length);
+  for(let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+/* ── 기억 상자 ── */
+function loadGh(){
+  try{
+    const s = localStorage.getItem("pb_gh");
+    if(!s) return null;
+    const o = JSON.parse(s);
+    return (o && o.user && o.repo && o.token) ? o : null;
+  }catch(e){ return null; }
+}
+function saveGh(o){ try{ localStorage.setItem("pb_gh", JSON.stringify(o)); }catch(e){} }
+function clearGh(){ try{ localStorage.removeItem("pb_gh"); }catch(e){} }
+
+function idbOpen(){
+  return new Promise((res, rej) => {
+    if(typeof indexedDB === "undefined") return rej(new Error("없음"));
+    const q = indexedDB.open("pb-atelier", 1);
+    q.onupgradeneeded = () => q.result.createObjectStore("kv");
+    q.onsuccess = () => res(q.result);
+    q.onerror = () => rej(q.error);
+  });
+}
+async function idbSet(k, v){
+  const db = await idbOpen();
+  return new Promise((res, rej) => {
+    const t = db.transaction("kv", "readwrite");
+    t.objectStore("kv").put(v, k);
+    t.oncomplete = res; t.onerror = () => rej(t.error);
+  });
+}
+async function idbGet(k){
+  const db = await idbOpen();
+  return new Promise((res, rej) => {
+    const t = db.transaction("kv", "readonly");
+    const q = t.objectStore("kv").get(k);
+    q.onsuccess = () => res(q.result); q.onerror = () => rej(q.error);
+  });
+}
+async function idbDel(k){
+  const db = await idbOpen();
+  return new Promise((res, rej) => {
+    const t = db.transaction("kv", "readwrite");
+    t.objectStore("kv").delete(k);
+    t.oncomplete = res; t.onerror = () => rej(t.error);
+  });
+}
+
+/* ── 본채 읽기 ── */
+const RE_W = /const WORKS = \[[\s\S]*?\]; \/\* WORKS 끝 \*\//;
+const RE_A = /const ABOUT = \{[\s\S]*?\}; \/\* ABOUT 끝 \*\//;
+
+function load(text, fromLabel){
+  const mW = text.match(RE_W), mA = text.match(RE_A);
+  if(!mW || !mA){
+    loaded = false; render();
+    setLoadNote("이 파일에서 내용 구역을 찾지 못했습니다. 본채 index.html이 맞는지 확인해 주세요.");
+    return false;
+  }
+  try{
+    W = new Function(mW[0] + "; return WORKS;")();
+    A = new Function(mA[0] + "; return ABOUT;")();
+  }catch(e){
+    loaded = false; render();
+    setLoadNote("내용을 읽는 중 문제가 생겼습니다: " + e.message);
+    return false;
+  }
+  src = text; loaded = true; from = fromLabel; tab = "works";
+  render();
+  return true;
+}
+
+function setLoadNote(t){
+  const el = document.getElementById("load-note");
+  if(el) el.textContent = t;
+}
+
+/* ── 깃허브 ── */
+function ghApi(path, opt){
+  opt = opt || {};
+  return fetch("https://api.github.com/repos/" + gh.user + "/" + gh.repo + path, {
+    method: opt.method || "GET",
+    body: opt.body,
+    headers: {
+      "Authorization": "Bearer " + gh.token,
+      "Accept": "application/vnd.github+json"
+    }
+  });
+}
+
+async function ghLoad(){
+  const r = await ghApi("/contents/index.html?ref=" + encodeURIComponent(gh.branch || "main"));
+  if(!r.ok) throw new Error("응답 " + r.status);
+  const j = await r.json();
+  ghSha = j.sha;
+  return ub64(j.content);
+}
+
+async function ghPublish(text){
+  const body = {
+    message: "편집실에서 갱신",
+    content: b64utf8(text),
+    branch: gh.branch || "main"
+  };
+  if(ghSha) body.sha = ghSha;
+  let r = await ghApi("/contents/index.html", { method: "PUT", body: JSON.stringify(body) });
+  if(r.status === 409 || r.status === 422){
+    try{ await ghLoad(); }catch(e){}
+    if(ghSha) body.sha = ghSha;
+    r = await ghApi("/contents/index.html", { method: "PUT", body: JSON.stringify(body) });
+  }
+  if(!r.ok) throw new Error("응답 " + r.status);
+  const j = await r.json();
+  ghSha = j.content && j.content.sha;
+}
+
+/* ── 폴더(크롬·엣지) ── */
+async function ensurePerm(dir){
+  try{
+    if(await dir.queryPermission({ mode: "readwrite" }) === "granted") return true;
+    return (await dir.requestPermission({ mode: "readwrite" })) === "granted";
+  }catch(e){ return false; }
+}
+async function loadFromDir(dir){
+  const fh = await dir.getFileHandle("index.html");
+  const f = await fh.getFile();
+  dirHandle = dir;
+  return load(await f.text(), "폴더: " + dir.name);
+}
+async function writeToDir(text){
+  const fh = await dirHandle.getFileHandle("index.html", { create: true });
+  const w = await fh.createWritable();
+  await w.write(text);
+  await w.close();
+}
+
+/* ── 여는 길 찾기 ── */
+async function boot(){
+  gh = loadGh();
+  render();
+  if(gh){
+    try{ load(await ghLoad(), "깃허브 " + gh.user + "/" + gh.repo); return; }
+    catch(e){ setLoadNote("깃허브에서 불러오지 못했습니다(" + e.message + "). 다른 길을 찾는 중…"); }
+  }
+  try{
+    const r = await fetch("index.html?v=" + Date.now(), { cache: "no-store" });
+    if(r.ok){ load(await r.text(), "같은 폴더의 index.html"); return; }
+  }catch(e){}
+  try{ resumeAvail = !!(await idbGet("dir")); }catch(e){ resumeAvail = false; }
+  render();
+  setLoadNote(gh
+    ? "깃허브 연결은 있지만 저장소에서 index.html을 찾지 못했습니다. 아래에 파일을 놓고 저장하면 첫 발행이 됩니다."
+    : "본채 index.html을 아래에 놓아 주세요. 한 번만 연결해 두면 다음부터는 저절로 열립니다('연결' 참고).");
+}
+
+/* ── 저장(발행) ── */
+async function save(st){
+  if(!RE_W.test(src) || !RE_A.test(src)){
+    st.textContent = "이정표를 찾지 못했습니다. 본채를 다시 불러와 주세요.";
+    return;
+  }
+  const out = src.replace(RE_W, () => serializeWorks()).replace(RE_A, () => serializeAbout());
+  src = out;
+  if(gh){
+    st.textContent = "발행하는 중…";
+    try{
+      await ghPublish(out);
+      if(dirHandle){ try{ await writeToDir(out); }catch(e){} }
+      st.textContent = "발행되었습니다. 잠시(1분 안팎) 뒤 사이트에 반영됩니다.";
+      return;
+    }catch(e){
+      st.textContent = "발행에 실패했습니다(" + e.message + "). 대신 파일로 내려받습니다.";
+      download(out);
+      return;
+    }
+  }
+  if(dirHandle){
+    try{
+      await writeToDir(out);
+      st.textContent = "폴더의 index.html에 바로 저장했습니다. 공개하려면 폴더를 호스팅에 다시 올리면 됩니다.";
+      return;
+    }catch(e){
+      st.textContent = "폴더에 쓰지 못했습니다(" + e.message + "). 대신 파일로 내려받습니다.";
+    }
+  }
+  download(out);
+  st.textContent = "새 index.html을 내려받았습니다. 기존 파일과 바꿔 호스팅에 올리면 반영됩니다.";
+}
+
+function download(text){
+  const url = URL.createObjectURL(new Blob([text], { type: "text/html" }));
+  const a = Object.assign(document.createElement("a"), { href: url, download: "index.html" });
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+
+/* ── 새 본채 만들기 ── */
+function serializeWork(w){
+  const q = s => JSON.stringify(s == null ? "" : String(s));
+  const b = String(w.body == null ? "" : w.body)
+    .replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${");
+  return "{\n  id: " + q(w.id)
+    + ",\n  section: " + q(w.section)
+    + ",\n  title: " + q(w.title)
+    + ",\n  date: " + q(w.date)
+    + ",\n  meta: " + q(w.meta)
+    + ",\n  link: " + q(w.link)
+    + ",\n  note: " + q(w.note)
+    + ",\n  body: `" + b + "`\n}";
+}
+
+function serializeWorks(){
+  return "const WORKS = [\n\n" + W.map(serializeWork).join(",\n\n")
+    + "\n\n]; /* WORKS 끝 */";
+}
+
+function serializeAbout(){
+  const q = s => JSON.stringify(s == null ? "" : String(s));
+  const facts = A.facts.map(f =>
+    "    { k: " + q(f.k) + ", v: " + q(f.v) + " }").join(",\n");
+  const groups = A.groups.map(g =>
+    "    { h: " + q(g.h) + ", items: [\n"
+    + g.items.map(raw => {
+        const o = normIt(raw);
+        return "      { t: " + q(o.t) + ", url: " + q(o.url) + " }";
+      }).join(",\n")
+    + "\n    ] }").join(",\n");
+  return "const ABOUT = {\n  facts: [\n" + facts + "\n  ],\n  groups: [\n"
+    + groups + "\n  ]\n}; /* ABOUT 끝 */";
+}
+
+/* ── 화면 ── */
+function loaderHtml(){
+  const ways =
+    (resumeAvail ? `<button type="button" class="btn" id="resume-dir">지난 폴더 다시 열기</button>` : "")
+    + (fsOK ? `<button type="button" class="btn plain" id="pick-dir">폴더 연결 — 크롬·엣지</button>` : "");
+  return `
+    <h1 class="w-title">본채 불러오기</h1>
+    <p id="load-note" aria-live="polite">불러오는 중…</p>
+    <div class="ways">${ways}</div>
+    <div class="drop" id="drop">
+      index.html 파일을 이곳에 끌어다 놓거나,
+      <label>골라서 열기<input id="file" type="file" accept=".html,.htm" hidden></label>
+    </div>`;
+}
+
+function modeLine(){
+  if(gh) return `저장하면 <b>깃허브로 바로 발행</b>됩니다`;
+  if(dirHandle) return `저장하면 <b>폴더에 바로 저장</b>됩니다`;
+  return `저장하면 새 index.html이 내려받아집니다`;
+}
+
+function manListHtml(){
+  if(!W.length) return `<p class="page-note">아직 글이 없습니다.</p>`;
+  return W.map(w =>
+    `<div class="man-row">
+       <span class="g">${SEC[w.section].short}</span>
+       <span class="t">${esc(w.title)}</span>
+       <button type="button" class="mini" data-edit="${esc(w.id)}">고치기</button>
+       <button type="button" class="mini danger" data-del="${esc(w.id)}">삭제</button>
+     </div>`).join("");
+}
+
+function aboutEdHtml(){
+  const factRows = A.facts.map((f, i) =>
+    `<div class="ed-row">
+       <input data-a="fk" data-i="${i}" value="${esc(f.k)}" aria-label="항목 이름">
+       <input data-a="fv" data-i="${i}" value="${esc(f.v)}" aria-label="항목 내용">
+       <button type="button" class="ed-x" data-a="fact-del" data-i="${i}" aria-label="항목 삭제">×</button>
+     </div>`).join("");
+  const grps = A.groups.map((g, gi) =>
+    `<div class="ed-grp">
+       <div class="ed-row head">
+         <input data-a="gh" data-g="${gi}" value="${esc(g.h)}" aria-label="묶음 이름">
+         <button type="button" class="ed-x" data-a="grp-del" data-g="${gi}">묶음 삭제</button>
+       </div>
+       ${g.items.map((raw, ii) => {
+         const o = normIt(raw);
+         return `<div class="ed-row">
+           <input data-a="it" data-g="${gi}" data-i="${ii}" value="${esc(o.t)}" aria-label="항목">
+           <input data-a="iu" data-g="${gi}" data-i="${ii}" value="${esc(o.url)}" placeholder="링크 (없으면 비워 두세요)" aria-label="링크">
+           <button type="button" class="ed-x" data-a="it-del" data-g="${gi}" data-i="${ii}" aria-label="항목 삭제">×</button>
+         </div>`;
+       }).join("")}
+       <button type="button" class="ed-add" data-a="it-add" data-g="${gi}">+ 항목</button>
+     </div>`).join("");
+  return `
+    <div class="ed-sec"><span class="k">기본 항목</span>${factRows}
+      <button type="button" class="ed-add" data-a="fact-add">+ 항목</button></div>
+    <div class="ed-sec"><span class="k">묶음</span>${grps}
+      <button type="button" class="ed-add" data-a="grp-add">+ 묶음</button></div>
+    <button type="button" class="btn" data-a="ab-save">소개 저장${gh ? " — 바로 발행" : ""}</button>
+    <p id="ab-status" aria-live="polite"></p>`;
+}
+
+function linkHtml(){
+  const g = gh || { user: "", repo: "", branch: "", token: "" };
+  return `
+    <p class="page-note">한 번만 맡겨 두면, 그 뒤로는 편집실을 여는 순간 저절로 불러오고 저장 단추 하나로 사이트가 갱신됩니다. 토큰은 이 브라우저에만 저장되며 파일에는 남지 않습니다.</p>
+    <div class="lk">
+      <div class="lk-box">
+        <span class="k">깃허브 — 저장 즉시 발행</span>
+        <div class="row2">
+          <input id="gh-user" value="${esc(g.user)}" placeholder="깃허브 사용자명 (예: kimwonho)">
+          <input id="gh-repo" value="${esc(g.repo)}" placeholder="저장소 이름 (예: poetry-blue)">
+        </div>
+        <div class="row2">
+          <input id="gh-branch" value="${esc(g.branch)}" placeholder="가지 이름 (비우면 main)">
+          <input id="gh-token" type="password" value="${esc(g.token)}" placeholder="토큰 (안내문의 '즉시 발행' 참고)">
+        </div>
+        <div class="actions">
+          <button type="button" class="btn" id="gh-save">연결하고 불러오기</button>
+          ${gh ? `<button type="button" class="btn plain" id="gh-clear">연결 지우기</button>` : ""}
+        </div>
+        <p class="hint">만드는 법: github.com 가입 → 저장소 만들기 → 사이트 파일 올리기 → Settings의 Pages 켜기 → 토큰 만들기(해당 저장소, Contents 읽기·쓰기만). 자세한 순서는 사용안내에 있습니다.</p>
+      </div>
+      ${fsOK ? `
+      <div class="lk-box">
+        <span class="k">폴더 — 컴퓨터에 바로 저장 (크롬·엣지)</span>
+        <p class="hint" style="margin:0">사이트 폴더를 한 번 고르면, 저장할 때 폴더의 index.html에 곧장 씁니다. 공개는 폴더를 호스팅에 올릴 때 이루어집니다.</p>
+        <div class="actions">
+          <button type="button" class="btn plain" id="dir-pick">${dirHandle ? "다른 폴더 고르기" : "폴더 고르기"}</button>
+          ${dirHandle ? `<span class="hint">연결됨: ${esc(dirHandle.name)}</span>` : ""}
+        </div>
+      </div>` : ""}
+      <p id="lk-status" aria-live="polite"></p>
+    </div>`;
+}
+
+function edHtml(){
+  let pane;
+  if(tab === "works"){
+    pane = `<form class="f" id="wrf">
+        <div class="wr-row">
+          <select id="wr-sec" aria-label="갈래">
+            <option value="poem">시</option>
+            <option value="prose">산문·비평</option>
+            <option value="research">연구</option>
+          </select>
+          <input id="wr-date" type="date" aria-label="날짜">
+        </div>
+        <input id="wr-title" placeholder="제목">
+        <input id="wr-meta" placeholder="발표 지면 (비워 두어도 됩니다)">
+        <input id="wr-link" placeholder="원문 주소 — 연구 글용 (비워 두어도 됩니다)">
+        <textarea id="wr-body" class="body" placeholder="본문. 행갈이와 빈 줄이 그대로 반영됩니다."></textarea>
+        <input id="wr-note" placeholder="본문 끝에 작게 붙는 말 (비워 두어도 됩니다)">
+        <div class="actions">
+          <button type="submit" class="btn" id="wr-save">올리기${gh ? " — 바로 발행" : ""}</button>
+          <button type="button" class="btn plain" id="wr-new" style="display:none">새 글로</button>
+        </div>
+        <p id="wr-status" aria-live="polite"></p>
+      </form>
+      <div class="man"><span class="k">글 관리</span><div id="man-list" class="top-line">${manListHtml()}</div></div>
+      <div class="preview"><span class="k">미리 보기</span><div id="wr-prev"></div></div>`;
+  } else if(tab === "about"){
+    pane = `<div class="ed" id="ed-about">${aboutEdHtml()}</div>`;
+  } else {
+    pane = linkHtml();
+  }
+  return `
+    <p class="from">불러온 곳 — ${esc(from)} · ${modeLine()}
+      <button type="button" class="mini" id="re-open">다시 불러오기</button></p>
+    <div class="tabs" id="tabs">
+      <button type="button" class="tab${tab === "works" ? " on" : ""}" data-tab="works">글</button>
+      <button type="button" class="tab${tab === "about" ? " on" : ""}" data-tab="about">소개</button>
+      <button type="button" class="tab${tab === "link" ? " on" : ""}" data-tab="link">연결</button>
+    </div>
+    ${pane}`;
+}
+
+const app = document.getElementById("app");
+
+function render(){
+  app.innerHTML = loaded ? edHtml() : loaderHtml();
+  if(loaded){
+    document.getElementById("re-open").addEventListener("click", () => {
+      loaded = false; boot();
+    });
+    document.getElementById("tabs").addEventListener("click", e => {
+      const t = e.target.dataset && e.target.dataset.tab;
+      if(t && t !== tab){ tab = t; render(); }
+    });
+    if(tab === "works") bindWorks();
+    else if(tab === "about") bindAbout();
+    else bindLink();
+  } else {
+    bindLoader();
+  }
+}
+
+function bindLoader(){
+  const drop = document.getElementById("drop");
+  const file = document.getElementById("file");
+  const read = f => {
+    if(!f) return;
+    const r = new FileReader();
+    r.onload = () => load(String(r.result), "파일: " + f.name);
+    r.readAsText(f, "utf-8");
+  };
+  drop.addEventListener("dragover", e => { e.preventDefault(); drop.classList.add("hover"); });
+  drop.addEventListener("dragleave", () => drop.classList.remove("hover"));
+  drop.addEventListener("drop", e => {
+    e.preventDefault(); drop.classList.remove("hover");
+    read(e.dataTransfer.files && e.dataTransfer.files[0]);
+  });
+  file.addEventListener("change", () => read(file.files && file.files[0]));
+  const rd = document.getElementById("resume-dir");
+  if(rd) rd.addEventListener("click", async () => {
+    try{
+      const dir = await idbGet("dir");
+      if(dir && await ensurePerm(dir)){ await loadFromDir(dir); }
+      else setLoadNote("폴더를 다시 열지 못했습니다. 아래에 파일을 놓아 주세요.");
+    }catch(e){ setLoadNote("폴더를 다시 열지 못했습니다: " + e.message); }
+  });
+  const pd = document.getElementById("pick-dir");
+  if(pd) pd.addEventListener("click", pickFolder);
+}
+
+async function pickFolder(){
+  try{
+    const dir = await window.showDirectoryPicker({ mode: "readwrite" });
+    try{ await idbSet("dir", dir); }catch(e){}
+    await loadFromDir(dir);
+  }catch(e){
+    if(e && e.name !== "AbortError") setLoadNote("폴더를 열지 못했습니다: " + e.message);
+  }
+}
+
+function bindWorks(){
+  const $ = id => document.getElementById(id);
+  const sec = $("wr-sec"), date = $("wr-date"), title = $("wr-title"),
+        meta = $("wr-meta"), link = $("wr-link"), note = $("wr-note"),
+        body = $("wr-body"), st = $("wr-status"), prev = $("wr-prev"),
+        form = $("wrf"), man = $("man-list"), btnNew = $("wr-new"), btnSave = $("wr-save");
+  let editingId = null;
+  const today = () => new Date().toISOString().slice(0, 10);
+  const saveLabel = editing => (editing ? "고치기" : "올리기") + (gh ? " — 바로 발행" : "");
+  const cur = () => ({
+    id: editingId || (sec.value[0] + "-" + Date.now().toString(36)),
+    section: sec.value,
+    title: title.value.trim(),
+    date: date.value || today(),
+    meta: meta.value.trim(),
+    link: link.value.trim(),
+    note: note.value.trim(),
+    body: body.value.replace(/\r\n/g, "\n")
+  });
+  const upd = () => {
+    const w = cur();
+    prev.innerHTML =
+      (w.title ? `<h2 class="w-title" style="font-size:20px">${esc(w.title)}</h2>` : "")
+      + `<p class="w-meta" style="margin-bottom:26px">${fmtDate(w.date)}${w.meta ? " · " + esc(w.meta) : ""}</p>`
+      + (w.body ? bodyHtml(w) : `<p class="page-note">쓰는 대로 여기에 나타납니다.</p>`);
+  };
+  const fill = w => {
+    editingId = w ? w.id : null;
+    sec.value = w ? w.section : "poem";
+    date.value = w ? w.date : today();
+    title.value = w ? w.title : "";
+    meta.value = w ? (w.meta || "") : "";
+    link.value = w ? (w.link || "") : "";
+    note.value = w ? (w.note || "") : "";
+    body.value = w ? w.body : "";
+    btnNew.style.display = w ? "inline-block" : "none";
+    btnSave.textContent = saveLabel(!!w);
+    upd();
+  };
+  form.addEventListener("input", upd);
+  btnNew.addEventListener("click", () => { fill(null); st.textContent = ""; });
+  man.addEventListener("click", e => {
+    const ed = e.target.dataset && e.target.dataset.edit;
+    const dl = e.target.dataset && e.target.dataset.del;
+    if(ed){
+      const w = W.find(x => x.id === ed);
+      if(w){ fill(w); window.scrollTo(0, 0); st.textContent = "「" + w.title + "」를 고치는 중입니다."; }
+    } else if(dl){
+      const i = W.findIndex(x => x.id === dl);
+      if(i < 0) return;
+      if(!confirm("「" + W[i].title + "」 글을 지울까요?" + (gh ? " 지우면 바로 발행됩니다." : ""))) return;
+      const wasEditing = editingId === dl;
+      W.splice(i, 1);
+      man.innerHTML = manListHtml();
+      if(wasEditing) fill(null);
+      save(st);
+    }
+  });
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const w = cur();
+    if(!w.title || !w.body){ st.textContent = "제목과 본문을 채워 주세요."; return; }
+    const i = W.findIndex(x => x.id === w.id);
+    if(i >= 0) W[i] = w; else W.unshift(w);
+    editingId = w.id;
+    btnNew.style.display = "inline-block";
+    btnSave.textContent = saveLabel(true);
+    man.innerHTML = manListHtml();
+    save(st);
+  });
+  fill(null);
+}
+
+function bindAbout(){
+  const box = document.getElementById("ed-about");
+  const redraw = () => { box.innerHTML = aboutEdHtml(); };
+  box.addEventListener("input", e => {
+    const d = e.target.dataset || {};
+    const i = Number(d.i), g = Number(d.g);
+    if(d.a === "fk") A.facts[i].k = e.target.value;
+    else if(d.a === "fv") A.facts[i].v = e.target.value;
+    else if(d.a === "gh") A.groups[g].h = e.target.value;
+    else if(d.a === "it"){ A.groups[g].items[i] = normIt(A.groups[g].items[i]); A.groups[g].items[i].t = e.target.value; }
+    else if(d.a === "iu"){ A.groups[g].items[i] = normIt(A.groups[g].items[i]); A.groups[g].items[i].url = e.target.value.trim(); }
+  });
+  box.addEventListener("click", e => {
+    const d = e.target.dataset || {};
+    if(!d.a) return;
+    const i = Number(d.i), g = Number(d.g);
+    if(d.a === "fact-add"){ A.facts.push({ k: "", v: "" }); redraw(); }
+    else if(d.a === "fact-del"){ A.facts.splice(i, 1); redraw(); }
+    else if(d.a === "grp-add"){ A.groups.push({ h: "새 묶음", items: [{ t: "", url: "" }] }); redraw(); }
+    else if(d.a === "grp-del"){
+      if(confirm("이 묶음을 통째로 지울까요?")){ A.groups.splice(g, 1); redraw(); }
+    }
+    else if(d.a === "it-add"){ A.groups[g].items.push({ t: "", url: "" }); redraw(); }
+    else if(d.a === "it-del"){ A.groups[g].items.splice(i, 1); redraw(); }
+    else if(d.a === "ab-save"){
+      A.facts = A.facts.filter(f => f.k || f.v);
+      A.groups.forEach(gr => { gr.items = gr.items.map(normIt).filter(o => o.t); });
+      redraw();
+      save(document.getElementById("ab-status"));
+    }
+  });
+}
+
+function bindLink(){
+  const $ = id => document.getElementById(id);
+  const st = $("lk-status");
+  $("gh-save").addEventListener("click", async () => {
+    const o = {
+      user: $("gh-user").value.trim(),
+      repo: $("gh-repo").value.trim(),
+      branch: $("gh-branch").value.trim(),
+      token: $("gh-token").value.trim()
+    };
+    if(!o.user || !o.repo || !o.token){
+      st.textContent = "사용자명·저장소·토큰을 채워 주세요.";
+      return;
+    }
+    gh = o; ghSha = null; saveGh(o);
+    st.textContent = "확인하는 중…";
+    try{
+      load(await ghLoad(), "깃허브 " + gh.user + "/" + gh.repo);
+    }catch(e){
+      tab = "link"; render();
+      document.getElementById("lk-status").textContent =
+        "연결은 저장했지만 불러오지 못했습니다(" + e.message + "). 저장소 이름과 토큰 권한(Contents 읽기·쓰기)을 확인해 주세요. 저장소에 index.html이 아직 없다면, 파일을 끌어다 놓고 저장하면 첫 발행이 됩니다.";
+    }
+  });
+  const gc = $("gh-clear");
+  if(gc) gc.addEventListener("click", () => {
+    clearGh(); gh = null; ghSha = null; render();
+  });
+  const dp = $("dir-pick");
+  if(dp) dp.addEventListener("click", async () => {
+    try{
+      const dir = await window.showDirectoryPicker({ mode: "readwrite" });
+      try{ await idbSet("dir", dir); }catch(e){}
+      dirHandle = dir; render();
+      document.getElementById("lk-status").textContent = "폴더가 연결되었습니다: " + dir.name;
+    }catch(e){
+      if(e && e.name !== "AbortError") st.textContent = "폴더를 열지 못했습니다: " + e.message;
+    }
+  });
+}
+
+document.addEventListener("dragover", e => e.preventDefault());
+document.addEventListener("drop", e => e.preventDefault());
+
+boot();
+</script>
+</body>
+</html>
