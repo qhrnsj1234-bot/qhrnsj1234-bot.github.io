@@ -97,6 +97,7 @@ form.f,.ed,.lk{display:flex;flex-direction:column;gap:12px}
 .ed-sec{margin-top:30px;display:flex;flex-direction:column;gap:8px}
 .ed-row{display:grid;grid-template-columns:1fr 2.2fr auto;gap:8px}
 .ed-row.head{grid-template-columns:1fr auto}
+.ed-row.it4{grid-template-columns:1.6fr 1fr 1fr auto}
 .ed-grp{border:1px solid var(--line);padding:16px 14px 12px;background:rgba(255,255,255,.55);
   display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
 .ed-x{cursor:pointer;font-family:var(--mono);font-size:12px;padding:0 13px;
@@ -118,6 +119,8 @@ form.f,.ed,.lk{display:flex;flex-direction:column;gap:12px}
   main{padding:32px 20px 70px}
   .wr-row,.lk-box .row2{grid-template-columns:1fr}
   .ed-row{grid-template-columns:1fr 1fr auto}
+  .ed-row.it4{display:flex;flex-wrap:wrap}
+  .ed-row.it4 input{flex:1 1 46%}
   footer{padding:0 20px 44px}
 }
 </style>
@@ -145,7 +148,7 @@ form.f,.ed,.lk{display:flex;flex-direction:column;gap:12px}
    ========================================================= */
 
 let src = "", W = [], A = null, loaded = false, from = "", tab = "works";
-let gh = null, ghSha = null, dirHandle = null, resumeAvail = false;
+let gh = null, ghSha = null, dirHandle = null, resumeAvail = false, showLinkOnLoader = false;
 
 const fsOK = typeof window !== "undefined" && "showDirectoryPicker" in window;
 
@@ -165,7 +168,7 @@ function fmtDate(s){
   return p.length >= 3 ? `${p[0]}. ${p[1]}. ${p[2]}.` : `${p[0]}. ${p[1] || ""}.`;
 }
 
-const normIt = it => typeof it === "string" ? { t: it, url: "" } : it;
+const normIt = it => typeof it === "string" ? { t: it, url: "", img: "" } : it;
 
 function bodyHtml(w){
   if(w.section === "poem")
@@ -256,6 +259,7 @@ function load(text, fromLabel){
     return false;
   }
   src = text; loaded = true; from = fromLabel; tab = "works";
+  showLinkOnLoader = false;
   render();
   return true;
 }
@@ -276,6 +280,23 @@ function ghApi(path, opt){
       "Accept": "application/vnd.github+json"
     }
   });
+}
+
+async function ghErr(r){
+  let m = "";
+  try{ m = (await r.json()).message || ""; }catch(e){}
+  const low = m.toLowerCase();
+  if(low.includes("empty"))
+    return "저장소가 비어 있습니다. 저장소 Code 화면에서 Add file → Upload files로 index.html을 한 번 올린 뒤 다시 저장해 주세요.";
+  if(low.includes("protected") || low.includes("rule"))
+    return "가지 보호 규칙이 발행을 막고 있습니다. 저장소 Settings → Rules(또는 Branches)에서 규칙을 지워 주세요.";
+  if(r.status === 401 || low.includes("bad credentials"))
+    return "토큰이 맞지 않거나 만료되었습니다. '연결'에서 토큰을 다시 넣어 주세요.";
+  if(r.status === 403)
+    return "권한이 부족합니다. 토큰의 Contents 권한이 Read and write인지, 저장소가 맞게 선택되었는지 확인해 주세요.";
+  if(r.status === 404)
+    return "저장소나 파일을 찾지 못했습니다. 사용자명·저장소 이름을 확인해 주세요.";
+  return "응답 " + r.status + (m ? " · " + m : "");
 }
 
 async function ghLoad(){
@@ -299,7 +320,7 @@ async function ghPublish(text){
     if(ghSha) body.sha = ghSha;
     r = await ghApi("/contents/index.html", { method: "PUT", body: JSON.stringify(body) });
   }
-  if(!r.ok) throw new Error("응답 " + r.status);
+  if(!r.ok) throw new Error(await ghErr(r));
   const j = await r.json();
   ghSha = j.content && j.content.sha;
 }
@@ -340,7 +361,7 @@ async function boot(){
   render();
   setLoadNote(gh
     ? "깃허브 연결은 있지만 저장소에서 index.html을 찾지 못했습니다. 아래에 파일을 놓고 저장하면 첫 발행이 됩니다."
-    : "본채 index.html을 아래에 놓아 주세요. 한 번만 연결해 두면 다음부터는 저절로 열립니다('연결' 참고).");
+    : "본채 index.html을 아래에 놓아 주세요. 위의 '깃허브 연결'을 한 번 해 두면 다음부터는 저절로 열립니다.");
 }
 
 /* ── 저장(발행) ── */
@@ -412,7 +433,7 @@ function serializeAbout(){
     "    { h: " + q(g.h) + ", items: [\n"
     + g.items.map(raw => {
         const o = normIt(raw);
-        return "      { t: " + q(o.t) + ", url: " + q(o.url) + " }";
+        return "      { t: " + q(o.t) + ", url: " + q(o.url) + ", img: " + q(o.img) + " }";
       }).join(",\n")
     + "\n    ] }").join(",\n");
   return "const ABOUT = {\n  facts: [\n" + facts + "\n  ],\n  groups: [\n"
@@ -421,8 +442,17 @@ function serializeAbout(){
 
 /* ── 화면 ── */
 function loaderHtml(){
+  if(showLinkOnLoader){
+    return `
+    <h1 class="w-title">연결</h1>
+    ${linkHtml()}
+    <div class="ways" style="margin-top:14px">
+      <button type="button" class="mini" id="lk-back">← 불러오기로 돌아가기</button>
+    </div>`;
+  }
   const ways =
-    (resumeAvail ? `<button type="button" class="btn" id="resume-dir">지난 폴더 다시 열기</button>` : "")
+    `<button type="button" class="btn" id="open-link">깃허브 연결 — 저장 즉시 발행</button>`
+    + (resumeAvail ? `<button type="button" class="btn" id="resume-dir">지난 폴더 다시 열기</button>` : "")
     + (fsOK ? `<button type="button" class="btn plain" id="pick-dir">폴더 연결 — 크롬·엣지</button>` : "");
   return `
     <h1 class="w-title">본채 불러오기</h1>
@@ -466,9 +496,10 @@ function aboutEdHtml(){
        </div>
        ${g.items.map((raw, ii) => {
          const o = normIt(raw);
-         return `<div class="ed-row">
+         return `<div class="ed-row it4">
            <input data-a="it" data-g="${gi}" data-i="${ii}" value="${esc(o.t)}" aria-label="항목">
-           <input data-a="iu" data-g="${gi}" data-i="${ii}" value="${esc(o.url)}" placeholder="링크 (없으면 비워 두세요)" aria-label="링크">
+           <input data-a="iu" data-g="${gi}" data-i="${ii}" value="${esc(o.url)}" placeholder="링크 (선택)" aria-label="링크">
+           <input data-a="ii" data-g="${gi}" data-i="${ii}" value="${esc(o.img || "")}" placeholder="스티커 이미지 주소 (선택)" aria-label="스티커 이미지">
            <button type="button" class="ed-x" data-a="it-del" data-g="${gi}" data-i="${ii}" aria-label="항목 삭제">×</button>
          </div>`;
        }).join("")}
@@ -573,6 +604,12 @@ function render(){
     if(tab === "works") bindWorks();
     else if(tab === "about") bindAbout();
     else bindLink();
+  } else if(showLinkOnLoader){
+    document.getElementById("lk-back").addEventListener("click", () => {
+      showLinkOnLoader = false; render();
+      setLoadNote("본채 index.html을 아래에 놓아 주세요. 깃허브를 연결해 두면 다음부터는 저절로 열립니다.");
+    });
+    bindLink();
   } else {
     bindLoader();
   }
@@ -594,6 +631,8 @@ function bindLoader(){
     read(e.dataTransfer.files && e.dataTransfer.files[0]);
   });
   file.addEventListener("change", () => read(file.files && file.files[0]));
+  const ol = document.getElementById("open-link");
+  if(ol) ol.addEventListener("click", () => { showLinkOnLoader = true; render(); });
   const rd = document.getElementById("resume-dir");
   if(rd) rd.addEventListener("click", async () => {
     try{
@@ -700,6 +739,7 @@ function bindAbout(){
     else if(d.a === "gh") A.groups[g].h = e.target.value;
     else if(d.a === "it"){ A.groups[g].items[i] = normIt(A.groups[g].items[i]); A.groups[g].items[i].t = e.target.value; }
     else if(d.a === "iu"){ A.groups[g].items[i] = normIt(A.groups[g].items[i]); A.groups[g].items[i].url = e.target.value.trim(); }
+    else if(d.a === "ii"){ A.groups[g].items[i] = normIt(A.groups[g].items[i]); A.groups[g].items[i].img = e.target.value.trim(); }
   });
   box.addEventListener("click", e => {
     const d = e.target.dataset || {};
@@ -741,7 +781,8 @@ function bindLink(){
     try{
       load(await ghLoad(), "깃허브 " + gh.user + "/" + gh.repo);
     }catch(e){
-      tab = "link"; render();
+      if(loaded){ tab = "link"; } else { showLinkOnLoader = true; }
+      render();
       document.getElementById("lk-status").textContent =
         "연결은 저장했지만 불러오지 못했습니다(" + e.message + "). 저장소 이름과 토큰 권한(Contents 읽기·쓰기)을 확인해 주세요. 저장소에 index.html이 아직 없다면, 파일을 끌어다 놓고 저장하면 첫 발행이 됩니다.";
     }
