@@ -384,6 +384,25 @@ h1.page,.w-title{font-weight:400;letter-spacing:-.025em}
   .w-body.prose p{font-size:16px}
   .fact{grid-template-columns:70px 1fr;gap:12px}
 }
+
+/* ── 영상 카드: 대문의 작은 활자 전시물 ───────────────── */
+.pf-channel{display:block;color:var(--ink);font-family:var(--mono);text-decoration:none}
+.pf-channel-kicker{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;font-size:9px;letter-spacing:.14em;color:var(--blue)}
+.pf-channel-kicker b{font-weight:500}
+.pf-channel-frame{display:block;position:relative;overflow:hidden;aspect-ratio:16 / 10;border:1px solid rgba(16,33,63,.42);background:#10213f}
+.pf-channel-frame::before{content:"";position:absolute;inset:5px;border:1px solid rgba(243,240,231,.7);z-index:1;pointer-events:none}
+.pf-channel-frame img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.12);transition:transform .35s ease,filter .35s ease}
+.pf-channel-play{position:absolute;right:10px;bottom:9px;z-index:2;display:grid;place-items:center;width:25px;height:25px;background:var(--blue);color:var(--bg);font-size:10px;line-height:1}
+.pf-channel-caption{display:block;margin-top:7px;font-size:9px;line-height:1.55;letter-spacing:.045em;color:var(--sub)}
+.pf-channel:hover .pf-channel-frame img{transform:scale(1.06);filter:grayscale(.2) contrast(1.08)}
+.pf-channel:hover .pf-channel-play{background:var(--ink)}
+@media(min-width:761px){
+  .pf-channel{position:absolute;right:52px;bottom:8px;width:156px;z-index:4}
+  .pf-channel::after{content:"01";position:absolute;right:-21px;top:0;font-size:9px;letter-spacing:.08em;color:var(--sub);writing-mode:vertical-rl}
+}
+@media(max-width:760px){
+  .pf-channel{width:148px;margin:48px 0 0 auto}
+}
 </style>
 </head>
 <body>
@@ -444,7 +463,12 @@ const PROFILE = {
   links: [
     { label: "instagram", url: "https://www.instagram.com/ki_mo_no_/", icon: "instagram" },
     { label: "blog", url: "https://blog.naver.com/ssonss81", icon: "blog" }
-  ]
+  ],
+  youtube: {
+    url: "https://www.youtube.com/@awouldbepoetsvlog2240",
+    thumbnail: "https://i.ytimg.com/vi/RPm1LhaeleM/hqdefault.jpg",
+    title: "시인 지망생 브이로그"
+  }
 };
 
 /* ── 새 글 틀 (복사해서 쓰세요) ───────────────────────────
@@ -565,6 +589,12 @@ function renderHome(){
   const roles = PROFILE.roles.map(r => `<p class="pf-role">${esc(r)}</p>`).join("");
   const links = PROFILE.links.map(l =>
     `<a href="${esc(l.url)}" target="_blank" rel="noopener" aria-label="${esc(l.label)}">${ICONS[l.icon] || esc(l.label)}</a>`).join("");
+  const channel = PROFILE.youtube ?
+    `<a class="pf-channel" href="${esc(PROFILE.youtube.url)}" target="_blank" rel="noopener" aria-label="${esc(PROFILE.youtube.title)} 유튜브 채널 열기">
+       <span class="pf-channel-kicker"><b>YOUTUBE / VLOG</b><span>↗</span></span>
+       <span class="pf-channel-frame"><img src="${esc(PROFILE.youtube.thumbnail)}" alt="${esc(PROFILE.youtube.title)} 썸네일" loading="lazy"><span class="pf-channel-play" aria-hidden="true">▶</span></span>
+       <span class="pf-channel-caption">${esc(PROFILE.youtube.title)}<br>WATCH THE CHANNEL</span>
+     </a>` : "";
   return `<div class="profile">
     <div class="pf-o">
       <span class="rg r1" aria-hidden="true"></span>
@@ -576,6 +606,7 @@ function renderHome(){
     <div class="pf-roles">${roles}</div>
     <p class="pf-mail"><a href="mailto:${esc(PROFILE.email)}">${esc(PROFILE.email)}</a></p>
     <div class="pf-links">${links}</div>
+    ${channel}
   </div>`;
 }
 
