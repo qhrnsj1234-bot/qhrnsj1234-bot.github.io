@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- RABBIT EDITION V2 · 2026-07-12 -->
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -196,6 +197,52 @@ main{min-height:100svh}
   .grp-it{grid-template-columns:24px minmax(0,1fr) auto;font-size:13px;padding:8px 0}.stk{width:40px;height:40px}
   .site-foot{margin:0 20px;padding-bottom:24px}
 }
+
+/* ── PIXEL RABBIT EDITION ───────────────────────────── */
+.ghost,.float-glyph{display:none!important}
+.site-head{position:fixed;left:0;right:0;top:0;height:54px;background:rgba(244,244,241,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--soft);z-index:50}
+.mark{left:17px;top:15px;font-size:9px;line-height:1.25}
+.mark span{font-size:7px;margin-top:2px}
+nav.top{right:15px;top:5px;display:flex;flex-direction:row;align-items:center;gap:3px;border:0}
+nav.top a{display:grid;place-items:center;width:43px;height:43px;min-width:0;padding:0;border:1px solid transparent;background:transparent;color:var(--ink)}
+nav.top a::before{display:none}
+nav.top a:hover,nav.top a.on{background:transparent;color:var(--blue);border-color:var(--blue)}
+nav.top a.on{box-shadow:2px 2px 0 var(--cyan)}
+.rabbit-nav{display:block;width:28px;height:28px}
+.rabbit-nav svg{display:block;width:100%;height:100%;image-rendering:pixelated;shape-rendering:crispEdges}
+.home-stage{min-height:100svh;padding-top:54px}
+.home-axis{top:15vh}
+.poem-seal{position:absolute;left:72.5%;top:19%;z-index:5;font:10px/1 var(--serif);color:var(--ink);border-bottom:1px solid var(--blue);padding-bottom:3px;letter-spacing:.06em}
+.pixel-rabbit{--dx:0px;--dy:0px;position:absolute;z-index:3;width:56px;height:56px;color:var(--blue);transform:translate(var(--dx),var(--dy));transition:transform .32s cubic-bezier(.2,.8,.2,1);animation:rabbit-hop 7s steps(2,end) infinite;pointer-events:none;filter:drop-shadow(3px 3px 0 rgba(10,10,12,.09))}
+.pixel-rabbit svg{display:block;width:100%;height:100%;overflow:visible;image-rendering:pixelated;shape-rendering:crispEdges}
+.rb1{left:72%;top:23%;width:68px;height:68px;animation-delay:-1s}
+.rb2{left:25%;top:23%;width:48px;height:48px;color:var(--cyan);animation-delay:-3.4s}
+.rb3{left:76%;top:57%;width:76px;height:76px;color:var(--ink);animation-delay:-5.2s}
+.rb4{left:49%;top:72%;width:54px;height:54px;color:var(--cyan);animation-delay:-2.2s}
+.rb5{left:42%;top:19%;width:42px;height:42px;color:var(--blue);animation-delay:-6s}
+@keyframes rabbit-hop{0%,100%{margin-top:0}48%{margin-top:-7px}52%{margin-top:-7px}}
+.home-vlog{right:16px!important;bottom:16px!important;width:88px!important}
+.home-vlog img{aspect-ratio:1/1!important;object-fit:cover!important}
+.home-vlog span{font-size:7px;line-height:1.35;margin-top:4px;text-align:right}
+.page-shell,.reader-shell{padding-top:14vh}
+.page-head::before{content:'';display:inline-block;width:18px;height:18px;background:var(--blue);clip-path:polygon(25% 0,43% 0,43% 22%,57% 22%,57% 0,75% 0,75% 22%,88% 22%,88% 75%,75% 75%,75% 90%,25% 90%,25% 75%,12% 75%,12% 22%,25% 22%);margin-right:10px;vertical-align:-3px}
+.page-title{margin-right:auto}.page-head{justify-content:flex-start;gap:0}.page-code{margin-left:auto}
+@media(max-width:760px){
+  .site-head{position:sticky;height:51px;display:block;overflow:hidden}
+  .mark{position:absolute;left:10px;top:17px;padding:0;font-size:8px}.mark span{display:none}
+  nav.top{position:absolute;right:7px;top:5px;display:flex;border:0;gap:1px;width:auto}
+  nav.top a{flex:none;width:37px;height:40px;padding:0}
+  .rabbit-nav{width:25px;height:25px}
+  main{min-height:calc(100svh - 51px)}
+  .home-stage{min-height:calc(100svh - 51px);padding-top:0}
+  .home-axis{top:12vh}
+  .poem-seal{left:auto;right:21%;top:17%;font-size:9px}
+  .rb1{left:70%;top:21%;width:55px;height:55px}.rb2{left:13%;top:26%;width:43px;height:43px}.rb3{left:72%;top:54%;width:61px;height:61px}.rb4{left:47%;top:69%;width:45px;height:45px}.rb5{left:43%;top:17%;width:35px;height:35px}
+  .home-vlog{right:8px!important;bottom:8px!important;width:76px!important}
+  .home-vlog span{display:none}
+  .page-shell,.reader-shell{padding-top:10vh}
+}
+
 </style>
 </head>
 <body>
@@ -207,11 +254,11 @@ main{min-height:100svh}
 <header class="site-head">
   <a class="mark" href="#/">KIM WONHO <span>POETRY ARCHIVE</span></a>
   <nav class="top" aria-label="주요 메뉴">
-    <a href="#/poem" data-n="poem" data-i="01">시</a>
-    <a href="#/prose" data-n="prose" data-i="02">산문</a>
-    <a href="#/research" data-n="research" data-i="03">연구</a>
-    <a href="#/about" data-n="about" data-i="04">소개</a>
-    <a href="#/guest" data-n="guest" data-i="05">방문록</a>
+    <a href="#/poem" data-n="poem" aria-label="시" title="시"><span class="rabbit-nav" data-rabbit="0" aria-hidden="true"></span></a>
+    <a href="#/prose" data-n="prose" aria-label="산문" title="산문"><span class="rabbit-nav" data-rabbit="1" aria-hidden="true"></span></a>
+    <a href="#/research" data-n="research" aria-label="연구" title="연구"><span class="rabbit-nav" data-rabbit="2" aria-hidden="true"></span></a>
+    <a href="#/about" data-n="about" aria-label="소개" title="소개"><span class="rabbit-nav" data-rabbit="3" aria-hidden="true"></span></a>
+    <a href="#/guest" data-n="guest" aria-label="방문록" title="방문록"><span class="rabbit-nav" data-rabbit="4" aria-hidden="true"></span></a>
   </nav>
 </header>
 
@@ -363,6 +410,49 @@ function fmtDate(s){
   return p.length >= 3 ? `${p[0]}. ${p[1]}. ${p[2]}.` : `${p[0]}. ${p[1] || ""}.`;
 }
 
+
+function rabbitFace(v=0){
+  const blue = v === 1 || v === 4 ? 'var(--cyan)' : 'currentColor';
+  const ears = [
+    '<rect x="5" y="1" width="5" height="8"/><rect x="14" y="1" width="5" height="8"/>',
+    '<rect x="4" y="2" width="5" height="8"/><rect x="16" y="1" width="4" height="9" transform="rotate(18 18 5)"/>',
+    '<rect x="5" y="0" width="4" height="9"/><rect x="15" y="0" width="4" height="9"/>',
+    '<rect x="3" y="3" width="8" height="4"/><rect x="14" y="1" width="5" height="8"/>',
+    '<rect x="5" y="1" width="5" height="8"/><rect x="15" y="2" width="5" height="7"/>'
+  ][v%5];
+  const face = [
+    '<rect x="7" y="13" width="3" height="3" fill="white"/><rect x="15" y="13" width="3" height="3" fill="white"/><rect x="11" y="18" width="3" height="2" fill="white"/>',
+    '<rect x="7" y="13" width="3" height="3" fill="white"/><rect x="15" y="14" width="4" height="1" fill="white"/><rect x="11" y="18" width="3" height="2" fill="white"/>',
+    '<rect x="6" y="12" width="5" height="5" fill="none" stroke="white"/><rect x="14" y="12" width="5" height="5" fill="none" stroke="white"/><rect x="11" y="14" width="3" height="1" fill="white"/><rect x="11" y="19" width="3" height="1" fill="white"/>',
+    '<rect x="7" y="14" width="4" height="1" fill="white"/><rect x="15" y="14" width="4" height="1" fill="white"/><rect x="10" y="18" width="5" height="1" fill="white"/>',
+    '<rect x="7" y="13" width="2" height="3" fill="white"/><rect x="16" y="13" width="2" height="3" fill="white"/><rect x="10" y="18" width="2" height="2" fill="white"/><rect x="13" y="18" width="2" height="2" fill="white"/>'
+  ][v%5];
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" style="color:${blue}"><g fill="currentColor">${ears}<rect x="3" y="8" width="19" height="14"/><rect x="1" y="11" width="3" height="8"/><rect x="21" y="11" width="3" height="8"/></g>${face}</svg>`;
+}
+
+function rabbitBody(v=0){
+  const common = '<rect x="8" y="3" width="5" height="12"/><rect x="20" y="3" width="5" height="12"/><rect x="6" y="12" width="21" height="14"/><rect x="3" y="15" width="4" height="8"/><rect x="26" y="15" width="4" height="8"/>';
+  const faces = [
+    '<rect x="10" y="17" width="3" height="3" fill="white"/><rect x="21" y="17" width="3" height="3" fill="white"/><rect x="15" y="22" width="4" height="2" fill="white"/>',
+    '<rect x="10" y="17" width="3" height="3" fill="white"/><rect x="21" y="18" width="4" height="1" fill="white"/><rect x="15" y="22" width="4" height="2" fill="white"/>',
+    '<rect x="9" y="16" width="6" height="6" fill="none" stroke="white" stroke-width="2"/><rect x="20" y="16" width="6" height="6" fill="none" stroke="white" stroke-width="2"/><rect x="15" y="18" width="5" height="2" fill="white"/>',
+    '<rect x="10" y="18" width="5" height="1" fill="white"/><rect x="21" y="18" width="5" height="1" fill="white"/><rect x="16" y="22" width="3" height="1" fill="white"/>',
+    '<rect x="10" y="17" width="2" height="3" fill="white"/><rect x="22" y="17" width="2" height="3" fill="white"/><rect x="15" y="22" width="2" height="2" fill="white"/><rect x="18" y="22" width="2" height="2" fill="white"/>'
+  ][v%5];
+  const bodies = [
+    '<rect x="10" y="26" width="16" height="12"/><rect x="7" y="35" width="9" height="4"/><rect x="21" y="35" width="9" height="4"/><rect x="27" y="28" width="5" height="5"/>',
+    '<rect x="9" y="26" width="18" height="9"/><rect x="4" y="31" width="9" height="4"/><rect x="24" y="28" width="9" height="4"/><rect x="28" y="23" width="5" height="5"/>',
+    '<rect x="10" y="26" width="16" height="12"/><rect x="6" y="29" width="7" height="5"/><rect x="23" y="29" width="7" height="5"/><rect x="12" y="31" width="12" height="8" fill="var(--paper)"/><rect x="17" y="31" width="2" height="8"/>',
+    '<rect x="6" y="27" width="24" height="8"/><rect x="2" y="31" width="8" height="4"/><rect x="27" y="30" width="6" height="5"/><rect x="12" y="27" width="10" height="2" fill="white"/>',
+    '<rect x="10" y="26" width="16" height="11"/><rect x="5" y="28" width="6" height="5"/><rect x="25" y="28" width="6" height="5"/><rect x="8" y="36" width="10" height="4"/><rect x="22" y="36" width="9" height="4"/>'
+  ][v%5];
+  return `<svg viewBox="0 0 36 42" aria-hidden="true"><g fill="currentColor">${common}${bodies}</g>${faces}</svg>`;
+}
+
+function paintNavRabbits(){
+  document.querySelectorAll('.rabbit-nav').forEach(el => el.innerHTML = rabbitFace(Number(el.dataset.rabbit || 0)));
+}
+
 function renderRows(list){
   return list.map((w, i) =>
     `<a class="work-line" href="#/w/${esc(w.id)}" data-title="${esc(w.title)}" data-section="${esc(w.section)}" data-meta="${esc(w.meta || fmtDate(w.date))}" data-excerpt="${esc(String(w.body || '').replace(/\s+/g,' ').slice(0,96))}">
@@ -371,21 +461,17 @@ function renderRows(list){
 }
 
 function renderHome(){
-  const links = PROFILE.links.map(l =>
-    `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("");
-  const video = PROFILE.youtube ? `<a class="home-vlog" href="${esc(PROFILE.youtube.url)}" target="_blank" rel="noopener"><img src="${esc(PROFILE.youtube.thumbnail)}" alt="${esc(PROFILE.youtube.title)}" loading="lazy"><span>VIDEO / ${esc(PROFILE.youtube.title)} ↗</span></a>` : '';
+  const links = PROFILE.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("");
+  const video = PROFILE.youtube ? `<a class="home-vlog" href="${esc(PROFILE.youtube.url)}" target="_blank" rel="noopener" aria-label="${esc(PROFILE.youtube.title)} 유튜브 열기"><img src="${esc(PROFILE.youtube.thumbnail)}" alt="${esc(PROFILE.youtube.title)}" loading="lazy"><span>YOUTUBE ↗</span></a>` : '';
   return `<section class="home-stage" aria-label="김원호 홈페이지">
-    <div class="home-axis" aria-hidden="true"></div>
-    <div class="float-glyph g1" data-depth="1.4">詩<br><small>POEM</small></div>
-    <div class="float-glyph g2" data-depth="-.8">文<br><small>PROSE</small></div>
-    <div class="float-glyph g3" data-depth="1">硏<br><small>RESEARCH</small></div>
-    <div class="float-glyph g4" data-depth="-1.2">記<br><small>ARCHIVE</small></div>
-    <div class="home-identity">
-      <div class="portrait-chip"><img src="${esc(PROFILE.photo)}" alt="${esc(SITE.author)}의 사진" onerror="this.style.visibility='hidden'"></div>
-      <div><p class="home-name">${esc(PROFILE.names[2] || 'Kim wonho')}</p><p class="home-korean">${esc(PROFILE.names[0])} · ${esc(PROFILE.names[1])}</p><p class="home-role">${esc(PROFILE.roles.join(' / '))}</p></div>
-    </div>
-    <div class="home-contact"><a class="mail" href="mailto:${esc(PROFILE.email)}">${esc(PROFILE.email)}</a>${links}</div>
-    ${video}
+    <div class="home-axis" aria-hidden="true"></div><span class="poem-seal" aria-hidden="true">詩</span>
+    <div class="pixel-rabbit rb1" data-depth="1.4">${rabbitBody(0)}</div>
+    <div class="pixel-rabbit rb2" data-depth="-.8">${rabbitBody(1)}</div>
+    <div class="pixel-rabbit rb3" data-depth="1">${rabbitBody(2)}</div>
+    <div class="pixel-rabbit rb4" data-depth="-1.2">${rabbitBody(3)}</div>
+    <div class="pixel-rabbit rb5" data-depth=".7">${rabbitBody(4)}</div>
+    <div class="home-identity"><div class="portrait-chip"><img src="${esc(PROFILE.photo)}" alt="${esc(SITE.author)}의 사진" onerror="this.style.visibility='hidden'"></div><div><p class="home-name">${esc(PROFILE.names[2] || 'Kim wonho')}</p><p class="home-korean">${esc(PROFILE.names[0])} · ${esc(PROFILE.names[1])}</p><p class="home-role">${esc(PROFILE.roles.join(' / '))}</p></div></div>
+    <div class="home-contact"><a class="mail" href="mailto:${esc(PROFILE.email)}">${esc(PROFILE.email)}</a>${links}</div>${video}
   </section>`;
 }
 
@@ -393,7 +479,7 @@ function renderList(s){
   const list = WORKS.filter(w => w.section === s);
   const initial = list[0];
   const body = list.length ? renderRows(list) : `<p class="work-empty">아직 올린 글이 없습니다.</p>`;
-  return `<span class="ghost" aria-hidden="true">${SEC[s].ghost}</span><section class="page-shell">
+  return `<section class="page-shell">
     <div class="page-head"><h1 class="page-title">${SEC[s].label}</h1><span class="page-code">${String(['poem','prose','research'].indexOf(s)+1).padStart(2,'0')} / INDEX</span></div>
     <div class="work-layout"><div class="work-list">${body}</div>
       <aside class="work-preview" aria-hidden="true"><div class="preview-mark">${SEC[s].ghost}</div><div class="preview-copy"><p class="preview-title">${initial ? esc(initial.title) : SEC[s].label}</p><p class="preview-excerpt">${initial ? esc(String(initial.body||'').replace(/\s+/g,' ').slice(0,96)) : '새 글이 놓일 자리입니다.'}</p><p class="preview-meta">${initial ? esc(initial.meta || fmtDate(initial.date)) : 'KIM WONHO / ARCHIVE'}</p></div></aside>
@@ -441,13 +527,13 @@ function renderAbout(){
     const inner = `<span class="tx">${esc(o.t)}</span><span class="tail">${stk}<span class="arr">${o.url?'↗':''}</span></span>`;
     return o.url ? `<a class="grp-it" data-no="${no}" href="${esc(o.url)}" target="_blank" rel="noopener">${inner}</a>` : `<div class="grp-it" data-no="${no}">${inner}</div>`;
   }).join('')}</div></div>`).join('');
-  return `<span class="ghost" aria-hidden="true">記</span><section class="page-shell"><div class="page-head"><h1 class="page-title">소개</h1><span class="page-code">04 / ARCHIVE</span></div><div class="about-layout"><div class="about-main"><div class="facts">${facts}</div>${groups}</div><aside class="sticker-preview" aria-hidden="true"><div class="sticker-stage empty"></div><p class="sticker-label">항목 위에 포인터를 올리면 기록의 표지가 나타납니다.</p><span class="sticker-source">KIM WONHO / RECORDS</span></aside></div></section>`;
+  return `<section class="page-shell"><div class="page-head"><h1 class="page-title">소개</h1><span class="page-code">04 / ARCHIVE</span></div><div class="about-layout"><div class="about-main"><div class="facts">${facts}</div>${groups}</div><aside class="sticker-preview" aria-hidden="true"><div class="sticker-stage empty"></div><p class="sticker-label">항목 위에 포인터를 올리면 기록의 표지가 나타납니다.</p><span class="sticker-source">KIM WONHO / RECORDS</span></aside></div></section>`;
 }
 
 function renderGuest(){
   const items = GUESTBOOK.map(g => `<div class="gb"><p class="who">${esc(g.name || '익명')} · ${fmtDate(g.date)}</p><p class="msg">${esc(g.text)}</p></div>`).join('');
   const hint = SITE.guestbookEndpoint ? '' : `<p class="hint">보내기를 누르면 메일 창이 열립니다.</p>`;
-  return `<span class="ghost" aria-hidden="true">言</span><section class="page-shell"><div class="page-head"><h1 class="page-title">방문록</h1><span class="page-code">05 / GUEST</span></div><div class="guest-layout"><p class="page-note">읽고 가신 자리에 말을 남겨 주세요.</p><div class="gb-list">${items}</div><span class="k">말 남기기</span><form class="gbf" id="gbf"><input name="name" aria-label="이름" placeholder="이름 (비워 두어도 됩니다)"><textarea name="message" aria-label="내용" placeholder="여기에 적어 주세요." required></textarea><button type="submit">보내기</button><p id="gb-status" aria-live="polite"></p></form>${hint}</div></section>`;
+  return `<section class="page-shell"><div class="page-head"><h1 class="page-title">방문록</h1><span class="page-code">05 / GUEST</span></div><div class="guest-layout"><p class="page-note">읽고 가신 자리에 말을 남겨 주세요.</p><div class="gb-list">${items}</div><span class="k">말 남기기</span><form class="gbf" id="gbf"><input name="name" aria-label="이름" placeholder="이름 (비워 두어도 됩니다)"><textarea name="message" aria-label="내용" placeholder="여기에 적어 주세요." required></textarea><button type="submit">보내기</button><p id="gb-status" aria-live="polite"></p></form>${hint}</div></section>`;
 }
 
 function gbSubmit(e){
@@ -491,7 +577,7 @@ function markNav(key){
 function setupHomeMotion(){
   const stage = document.querySelector('.home-stage');
   if(!stage || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const glyphs = [...stage.querySelectorAll('.float-glyph')];
+  const glyphs = [...stage.querySelectorAll('.pixel-rabbit')];
   stage.addEventListener('pointermove', e => {
     const x = (e.clientX / innerWidth - .5) * 10, y = (e.clientY / innerHeight - .5) * 10;
     glyphs.forEach(g => { const d = Number(g.dataset.depth || 1); g.style.setProperty('--dx', `${x*d}px`); g.style.setProperty('--dy', `${y*d}px`); });
@@ -556,6 +642,7 @@ function route(){
 }
 
 window.addEventListener("hashchange", route);
+paintNavRabbits();
 route();
 
 /* ── 푸른 안개: 한 번 걷히면 그 자리에서는 다시 끼지 않습니다 ── */
